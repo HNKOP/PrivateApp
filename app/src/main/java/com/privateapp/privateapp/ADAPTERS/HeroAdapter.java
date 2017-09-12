@@ -22,11 +22,11 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.ViewHolder> {
 
         public ViewHolder(View view) {
             super(view);
-            nameview = (TextView) view.findViewById(R.id.recycleitem_name);
-            levelview = (TextView) view.findViewById(R.id.recycleitem_level);
-            strview = (TextView) view.findViewById(R.id.recycleitem_strength);
-            agilview = (TextView) view.findViewById(R.id.recycleitem_agility);
-            intview = (TextView) view.findViewById(R.id.recycleitem_intelligence);
+            nameview = view.findViewById(R.id.recycleitem_name);
+            levelview = view.findViewById(R.id.recycleitem_level);
+            strview =  view.findViewById(R.id.recycleitem_strength);
+            agilview = view.findViewById(R.id.recycleitem_agility);
+            intview = view.findViewById(R.id.recycleitem_intelligence);
             view.setOnClickListener(this);
 
 
@@ -37,21 +37,23 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.ViewHolder> {
         }
     }
 
+    public HeroAdapter(List<Hero> items) {  listitem = items;  }
+
     @Override
     public HeroAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycle_heroeslist_item_layout,parent,false);
-        return null;
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Hero hero = listitem.get(position);
         holder.nameview.setText(hero.getName());
-        holder.levelview.setText(hero.getLevel());
-        holder.strview.setText(String.valueOf(hero.getStrength()));
-        holder.agilview.setText(String.valueOf(hero.getAgility()));
-        holder.intview.setText(String.valueOf(hero.getIntelligence()));
+        holder.levelview.setText("Уровень: " + String.valueOf(hero.getLevel()));
+        holder.strview.setText("STR: " + String.valueOf(hero.getStrength()));
+        holder.agilview.setText("AGL: " + String.valueOf(hero.getAgility()));
+        holder.intview.setText("INT: " + String.valueOf(hero.getIntelligence()));
 
     }
 

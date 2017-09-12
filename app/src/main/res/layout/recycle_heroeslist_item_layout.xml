@@ -32,7 +32,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginLeft="40dp"/>
+        android:layout_marginLeft="40dp"
+        android:textColor="#ff0000"/>
     <TextView
         android:id="@+id/recycleitem_agility"
         android:layout_width="wrap_content"
@@ -41,7 +42,8 @@
         android:layout_below="@id/recycleitem_name"
         android:layout_toRightOf="@id/recycleitem_strength"
         android:textSize="20sp"
-        android:layout_margin="5dp" />
+        android:layout_margin="5dp"
+        android:textColor="#00ff00"/>
     <TextView
         android:id="@+id/recycleitem_intelligence"
         android:layout_width="wrap_content"
@@ -50,5 +52,6 @@
         android:layout_below="@id/recycleitem_name"
         android:layout_toRightOf="@id/recycleitem_agility"
         android:textSize="20sp"
-        android:layout_margin="5dp" />
+        android:layout_margin="5dp"
+        android:textColor="#0000ff"/>
 </RelativeLayout>

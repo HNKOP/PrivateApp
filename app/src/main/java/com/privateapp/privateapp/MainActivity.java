@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements
 
 //        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
 //        startActivityForResult(signInIntent, RC_SIGN_IN);
-        Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
+        Intent intent = new Intent(getApplicationContext(),ChooseProfileActivity.class);
         startActivity(intent);
         overridePendingTransition(0,0);
 
