@@ -58,7 +58,7 @@ public class ChooseProfileActivity extends AppCompatActivity {
         {
 
         sqLiteClass = new SQLiteClass(getBaseContext());
-        sqLiteClass.CreateTestheroes();
+        //sqLiteClass.CreateTestheroes();
 
         heroeslist = sqLiteClass.GetAllHeroes();
 
@@ -67,9 +67,11 @@ public class ChooseProfileActivity extends AppCompatActivity {
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = new HeroAdapter(heroeslist);
-        mRecyclerView.setAdapter(mAdapter);
+        if(heroeslist.size() > 0 )
+        {
+            mAdapter = new HeroAdapter(heroeslist);
+            mRecyclerView.setAdapter(mAdapter);
+        }
 
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, mRecyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
@@ -89,6 +91,9 @@ public class ChooseProfileActivity extends AppCompatActivity {
 //                previousview = view;
 
                 Toast.makeText(ChooseProfileActivity.this,"Вы выбрали: " + txtName.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
+                startActivity(intent);
                 
             }
 
@@ -102,10 +107,18 @@ public class ChooseProfileActivity extends AppCompatActivity {
         {
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
+        finally {
+            sqLiteClass.Close();
+        }
     }
     public void onChooseClick(View view)
     {
         Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
+        startActivity(intent);
+    }
+    public void onCreateHeroClick(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(),CreateHeroActivity.class);
         startActivity(intent);
     }
 }

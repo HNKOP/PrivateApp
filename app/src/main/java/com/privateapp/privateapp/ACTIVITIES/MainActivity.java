@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -11,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,54 +33,63 @@ public class MainActivity extends AppCompatActivity implements
     TextView data;
     ImageView imgdata;
     TextView textview;
+    WebView webview;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textview = (TextView) findViewById(R.id.nametextview);
-        initBackgroundAnimation();
+        webview = (WebView) findViewById(R.id.background_view);
+        webview.loadUrl("file:///android_asset/pit.gif");
+        webview.setInitialScale(100);
+        button = (Button) findViewById(R.id.button_text);
 
+
+//        AnimationDrawable pro = (AnimationDrawable)button.getBackground();
+//        pro.start();
+        //initBackgroundAnimation();
     }
 
-    private void initBackgroundAnimation()
-    {
-        final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
-      //  final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
-
-        final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
-        animator.setRepeatCount(ValueAnimator.INFINITE);
-        animator.setInterpolator(new LinearInterpolator());
-        animator.setDuration(10000L);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                final float progress = (float) animation.getAnimatedValue();
-                final float width = backgroundOne.getWidth();
-
-                textview.setText(String.valueOf(progress));
-
-                float translationX;
-                if(progress > 0.5)
-                {
-                    translationX = width * (-progress + 1f) * 0.1f;
-
-
-                }
-                else
-                {
-                    translationX = width * progress * 0.1f;
-
-                }
-                backgroundOne.setTranslationX(translationX);
-               // backgroundTwo.setTranslationX(translationX - width);
-
-
-            }
-        });
-        animator.start();
-
-    }
+//    private void initBackgroundAnimation()
+//    {
+//        final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
+//      //  final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
+//
+//        final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
+//        animator.setRepeatCount(ValueAnimator.INFINITE);
+//        animator.setInterpolator(new LinearInterpolator());
+//        animator.setDuration(10000L);
+//        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                final float progress = (float) animation.getAnimatedValue();
+//                final float width = backgroundOne.getWidth();
+//
+//                textview.setText(String.valueOf(progress));
+//
+//                float translationX;
+//                if(progress > 0.5)
+//                {
+//                    translationX = width * (-progress + 1f) * 0.1f;
+//
+//
+//                }
+//                else
+//                {
+//                    translationX = width * progress * 0.1f;
+//
+//                }
+//                backgroundOne.setTranslationX(translationX);
+//               // backgroundTwo.setTranslationX(translationX - width);
+//
+//
+//            }
+//        });
+//        animator.start();
+//
+//    }
 
     @Override
     protected void onResume() {

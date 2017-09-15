@@ -2,19 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Button
-        android:id="@+id/button_choose"
+
+    <TextView
+        android:id="@+id/title_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Выберите персонажа"
         android:layout_centerHorizontal="true"
-        android:text="Выбрать"
-        android:onClick="onChooseClick"/>
+        android:textSize="25sp"
+        android:layout_margin="10dp"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_heroeslist"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/button_choose"
+        android:layout_below="@id/title_textview"
         android:layout_margin="10dp"
         android:background="#dddddd"/>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="25dp"
+        android:onClick="onCreateHeroClick"/>
 </RelativeLayout>
