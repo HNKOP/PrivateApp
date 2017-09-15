@@ -18,7 +18,7 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.ViewHolder> {
     private List<Hero> listitem;
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView nameview,levelview,strview,agilview,intview;
+        public TextView nameview,levelview,strview,agilview,intview,idview;
 
         public ViewHolder(View view) {
             super(view);
@@ -27,6 +27,7 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.ViewHolder> {
             strview =  view.findViewById(R.id.recycleitem_strength);
             agilview = view.findViewById(R.id.recycleitem_agility);
             intview = view.findViewById(R.id.recycleitem_intelligence);
+            idview = view.findViewById(R.id.recycleitem_id);
             view.setOnClickListener(this);
 
 
@@ -51,9 +52,10 @@ public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.ViewHolder> {
         Hero hero = listitem.get(position);
         holder.nameview.setText(hero.getName());
         holder.levelview.setText("Уровень: " + String.valueOf(hero.getLevel()));
-        holder.strview.setText("STR: " + String.valueOf(hero.getStrength()));
-        holder.agilview.setText("AGL: " + String.valueOf(hero.getAgility()));
-        holder.intview.setText("INT: " + String.valueOf(hero.getIntelligence()));
+        holder.strview.setText("СИЛ: " + String.valueOf(hero.getStrength()));
+        holder.agilview.setText("ЛОВ: " + String.valueOf(hero.getAgility()));
+        holder.intview.setText("ИНТ: " + String.valueOf(hero.getIntelligence()));
+        holder.idview.setText(String.valueOf(hero.getId()));
 
     }
 

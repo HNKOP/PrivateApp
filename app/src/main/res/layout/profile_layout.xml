@@ -13,14 +13,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="To battle"
+        android:text="К битве"
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
         android:onClick="onBattleClick"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="To map"
+        android:text="К карте"
         android:layout_alignParentLeft="true"
         android:layout_margin="5dp"
         android:onClick="onMapClick"/>

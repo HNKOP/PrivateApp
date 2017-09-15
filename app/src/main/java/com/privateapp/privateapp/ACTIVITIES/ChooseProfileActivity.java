@@ -1,25 +1,34 @@
-package com.privateapp.privateapp;
+package com.privateapp.privateapp.ACTIVITIES;
 
         import android.content.Intent;
         import android.database.Cursor;
         import android.database.sqlite.SQLiteDatabase;
+        import android.graphics.Color;
+        import android.graphics.drawable.Drawable;
         import android.os.Bundle;
         import android.support.annotation.Nullable;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.LinearLayoutManager;
         import android.support.v7.widget.RecyclerView;
         import android.view.View;
+        import android.widget.TextView;
         import android.widget.Toast;
 
         import com.privateapp.privateapp.ADAPTERS.HeroAdapter;
+        import com.privateapp.privateapp.DATABASE.SQLiteClass;
         import com.privateapp.privateapp.OBJECTS.Hero;
+        import com.privateapp.privateapp.R;
+        import com.privateapp.privateapp.RecyclerTouchListener;
 
         import java.util.ArrayList;
         import java.util.List;
 
 
 public class ChooseProfileActivity extends AppCompatActivity {
-    SQLiteDatabase database;
+    //SQLiteDatabase database;
+    SQLiteClass sqLiteClass;
+    View previousview;
+    Drawable backgroundDrawable;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -48,30 +57,10 @@ public class ChooseProfileActivity extends AppCompatActivity {
         try
         {
 
+        sqLiteClass = new SQLiteClass(getBaseContext());
+        sqLiteClass.CreateTestheroes();
 
-        database = getBaseContext().openOrCreateDatabase("privateapp.db",MODE_PRIVATE,null);
-        database.execSQL("CREATE TABLE IF NOT EXISTS heroes (name TEXT, level INTEGER, strength REAL, agility REAL, intelligence REAL)");
-
-//        database.execSQL("INSERT INTO heroes VALUES ('Lancelot', 10,5,5,5);");
-//        database.execSQL("INSERT INTO heroes VALUES ('Rafael', 5,15,2,4);");
-//        database.execSQL("INSERT INTO heroes VALUES ('Goku', 9000,150,100,20);");
-
-
-
-        heroeslist = new ArrayList<>();
-
-        Cursor cursor = database.rawQuery("SELECT * FROM heroes;", null);
-
-//            if(cursor.moveToFirst()){
-//                Toast.makeText(this, cursor.getString(0), Toast.LENGTH_SHORT).show();
-//            }
-
-        if(cursor.moveToFirst()){
-            do{
-                heroeslist.add(new Hero(cursor.getString(0),cursor.getInt(1),100,cursor.getFloat(2),cursor.getFloat(3),cursor.getFloat(4)));
-            }
-            while(cursor.moveToNext());
-        }
+        heroeslist = sqLiteClass.GetAllHeroes();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_heroeslist);
         mRecyclerView.setHasFixedSize(true);
@@ -82,9 +71,32 @@ public class ChooseProfileActivity extends AppCompatActivity {
         mAdapter = new HeroAdapter(heroeslist);
         mRecyclerView.setAdapter(mAdapter);
 
+        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, mRecyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                final TextView txtName = view.findViewById(R.id.recycleitem_name);
+                final TextView txtId = view.findViewById(R.id.recycleitem_id);
 
-            cursor.close();
-        database.close();
+
+//                backgroundDrawable = view.getBackground();
+//                if(previousview != null)
+//                {
+//                    previousview.setBackgroundDrawable(backgroundDrawable);
+//                }
+//
+//
+//                view.setBackgroundColor(Color.YELLOW);
+//                previousview = view;
+
+                Toast.makeText(ChooseProfileActivity.this,"Вы выбрали: " + txtName.getText().toString(), Toast.LENGTH_SHORT).show();
+                
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
         }
         catch (Exception e)
         {

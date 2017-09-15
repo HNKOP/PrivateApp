@@ -1,4 +1,4 @@
-package com.privateapp.privateapp;
+package com.privateapp.privateapp.ACTIVITIES;
 
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.privateapp.privateapp.R;
 
 
 public class SecondActivity extends AppCompatActivity {

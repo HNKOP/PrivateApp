@@ -1,4 +1,4 @@
-package com.privateapp.privateapp;
+package com.privateapp.privateapp.ACTIVITIES;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.privateapp.privateapp.R;
 
 public class MapActivity extends AppCompatActivity {
     WebView mapview;

@@ -1,4 +1,4 @@
-package com.privateapp.privateapp;
+package com.privateapp.privateapp.ACTIVITIES;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.privateapp.privateapp.R;
 
 
 public class BattleActivity extends AppCompatActivity {
