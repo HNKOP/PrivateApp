@@ -1,4 +1,4 @@
-package com.privateapp.privateapp;
+package com.privateapp.privateapp.ACTIVITIES;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.privateapp.privateapp.ACTIVITIES.BattleActivity;
+import com.privateapp.privateapp.ACTIVITIES.MapActivity;
+import com.privateapp.privateapp.R;
 
 
 public class ProfileActivity extends AppCompatActivity {

@@ -6,52 +6,74 @@
     android:background="@xml/border"
     >
     <TextView
+        android:id="@+id/recycleitem_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="id"
+        android:textSize="40sp"
+        android:textColor="#000000"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"/>
+    <TextView
+        android:id="@+id/recycleitem_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="."
+        android:textSize="40sp"
+        android:textColor="#000000"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/recycleitem_id"/>
+    <TextView
         android:id="@+id/recycleitem_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="heroesname"
-        android:textSize="25sp"
+        android:textSize="40sp"
         android:textColor="#000000"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:layout_toRightOf="@id/recycleitem_point"/>
     <TextView
         android:id="@+id/recycleitem_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="level"
         android:layout_below="@id/recycleitem_name"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:layout_margin="5dp" />
     <TextView
         android:id="@+id/recycleitem_strength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Strength"
-        android:layout_below="@id/recycleitem_name"
-        android:layout_toRightOf="@id/recycleitem_level"
         android:textSize="20sp"
+        android:textColor="#ff0000"
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="40dp"
-        android:textColor="#ff0000"/>
+        android:layout_marginLeft="400dp"/>
     <TextView
         android:id="@+id/recycleitem_agility"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Agility"
-        android:layout_below="@id/recycleitem_name"
-        android:layout_toRightOf="@id/recycleitem_strength"
+        android:layout_below="@id/recycleitem_strength"
+        android:layout_alignLeft="@id/recycleitem_strength"
         android:textSize="20sp"
-        android:layout_margin="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:textColor="#00ff00"/>
     <TextView
         android:id="@+id/recycleitem_intelligence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Intelligence"
-        android:layout_below="@id/recycleitem_name"
-        android:layout_toRightOf="@id/recycleitem_agility"
+        android:layout_below="@id/recycleitem_agility"
+        android:layout_alignLeft="@id/recycleitem_strength"
         android:textSize="20sp"
-        android:layout_margin="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:textColor="#0000ff"/>
 </RelativeLayout>

@@ -4,7 +4,11 @@ package com.privateapp.privateapp.OBJECTS;
 
 public class Hero {
     String name;
-    float basichp,totalhp,strength,intelligence,agility;
+    float basichp,totalhp;
+    int id;
+    int strength;
+    int intelligence;
+    int agility;
     int level;
 
     public void setLevel(int level) {
@@ -16,7 +20,8 @@ public class Hero {
         return level;
     }
 
-    public Hero(String name, int level, float basichp, float strength, float intelligence, float agility) {
+    public Hero(int id, String name, int level, float basichp, int strength, int agility, int intelligence) {
+        this.id = id;
         this.name = name;
         this.basichp = basichp;
         this.totalhp = basichp + strength*10;
@@ -24,6 +29,15 @@ public class Hero {
         this.intelligence = intelligence;
         this.agility = agility;
         this.level = level;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+
+        this.id = id;
     }
 
     public String getName() {
@@ -38,15 +52,15 @@ public class Hero {
         return totalhp;
     }
 
-    public float getStrength() {
+    public int getStrength() {
         return strength;
     }
 
-    public float getIntelligence() {
+    public int getIntelligence() {
         return intelligence;
     }
 
-    public float getAgility() {
+    public int getAgility() {
         return agility;
     }
 
@@ -62,15 +76,15 @@ public class Hero {
         this.totalhp = totalhp;
     }
 
-    public void setStrength(float strength) {
+    public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    public void setIntelligence(float intelligence) {
+    public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
 
-    public void setAgility(float agility) {
+    public void setAgility(int agility) {
         this.agility = agility;
     }
 }
