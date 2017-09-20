@@ -2,26 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/status_cont"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+        </RelativeLayout>
 
-    <TextView
-        android:id="@+id/title_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Битва"
-        android:textSize="35sp"
-        android:layout_margin="10dp"
-        android:layout_centerHorizontal="true"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_view">
+        android:layout_below="@id/status_cont">
 
 
     <RelativeLayout
         android:id="@+id/relative_hero"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_view"
+
         android:background="#dddddd"
         android:layout_weight="3">
         <ProgressBar
@@ -38,7 +36,7 @@
         android:id="@+id/relative_battlemenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_view"
+
         android:layout_toRightOf="@id/relative_hero"
         android:layout_weight="4">
         <TextView
@@ -67,7 +65,7 @@
         android:id="@+id/relative_enemy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_view"
+
         android:layout_toRightOf="@id/relative_battlemenu"
         android:background="#dddddd"
         android:layout_weight="3">

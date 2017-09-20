@@ -24,6 +24,26 @@ public class SQLiteClass {
     {
         database.execSQL("INSERT INTO heroes (NAME,LEVEL,STR,AGL,INT) VALUES ('" + hero.getName() + "'," + String.valueOf(hero.getLevel()) + "," + String.valueOf(hero.getStrength()) + "," + String.valueOf(hero.getAgility()) + "," + String.valueOf(hero.getIntelligence())+ ");");
     }
+    public void DeleteHero(int id)
+    {
+        database.execSQL("DELETE FROM heroes WHERE ID = " + String.valueOf(id)+";");
+    }
+    public String GetNameById(int id)
+    {
+        try
+        {
+            Cursor cursor = database.rawQuery("SELECT * FROM heroes WHERE ID = "+ String.valueOf(id) + ";", null);
+            if(cursor.moveToFirst()){
+                return cursor.getString(1);
+            }
+        }
+        catch (Exception e)
+        {
+            return e.toString();
+        }
+
+        return "Not found";
+    }
     public void CreateTestheroes()
     {
         database.execSQL("INSERT INTO heroes (NAME,LEVEL,STR,AGL,INT) VALUES ('Lancelot', 10,5,5,5);");
