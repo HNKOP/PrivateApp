@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/loc_profile_button"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Профиль"
+        android:textSize="10sp"/>
+    <Button
+        android:id="@+id/loc_battle_button"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Битва"
+        android:textSize="10sp"/>
+    <Button
+        android:id="@+id/loc_inventory_button"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Инвентарь"
+        android:textSize="10sp"/>
+    <Button
+        android:id="@+id/loc_settings_button"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Настройки"
+        android:textSize="10sp"/>
+</LinearLayout>

@@ -7,30 +7,39 @@
         android:id="@+id/avatar_view"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="#000000"
+        android:background="#e8aa84"
         android:layout_margin="5dp"/>
- <Button
-     android:id="@+id/profile_button"
-     android:layout_width="50dp"
-     android:layout_height="wrap_content"
-     android:text="P"
-     android:layout_toRightOf="@id/avatar_view"
-    />
-    <Button
-        android:id="@+id/battle_button"
-        android:layout_width="50dp"
+    <TextView
+        android:id="@+id/lvl_textview"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="B"
-        android:layout_toRightOf="@id/profile_button"
-       />
+        android:text="0 lvl"
+        android:textSize="25sp"
+        android:layout_toRightOf="@id/avatar_view"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"/>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/lvl_textview"
+        android:layout_marginLeft="10dp"
+        android:progress="100"/>
     <TextView
         android:id="@+id/location_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Локация"
-        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="40dp"
         android:textSize="25sp"/>
+    <Button
+        android:id="@+id/openlocations_button"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="V"/>
 
 </RelativeLayout>

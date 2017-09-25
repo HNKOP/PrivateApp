@@ -3,8 +3,11 @@ package com.privateapp.privateapp.ACTIVITIES;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +19,8 @@ import android.widget.Toast;
 import com.privateapp.privateapp.ACTIVITIES.BattleActivity;
 import com.privateapp.privateapp.ACTIVITIES.MapActivity;
 import com.privateapp.privateapp.DATABASE.SQLiteClass;
+import com.privateapp.privateapp.FRAGMENTS.DescriptionFragment;
+import com.privateapp.privateapp.FRAGMENTS.LocationFragment;
 import com.privateapp.privateapp.FRAGMENTS.StatusFragment;
 import com.privateapp.privateapp.R;
 
@@ -26,7 +31,11 @@ public class ProfileActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     FragmentManager manager;
     StatusFragment statusfragment;
+    DescriptionFragment descriptionFragment;
+    LocationFragment locationFragment;
     FragmentTransaction fragmentTransaction;
+    Boolean exit = false;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,8 +46,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         manager = getSupportFragmentManager();
         statusfragment =  new StatusFragment();
+        descriptionFragment = new DescriptionFragment();
+        locationFragment = new LocationFragment();
+
         fragmentTransaction = manager.beginTransaction();
         fragmentTransaction.add(R.id.status_cont,statusfragment);
+
         fragmentTransaction.commit();
 
 
@@ -53,10 +66,53 @@ public class ProfileActivity extends AppCompatActivity {
             View decorView = getWindow().getDecorView();
             int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
             decorView.setSystemUiVisibility(uiOptions);
+
             TextView titleview = (TextView) findViewById(R.id.location_view);
             titleview.setText("Профиль");
+
+            final Button locationbutton = findViewById(R.id.openlocations_button);
+            locationbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!locationFragment.isAdded())
+                    {
+                        fragmentTransaction = manager.beginTransaction();
+                        fragmentTransaction.add(R.id.location_cont,locationFragment);
+                        fragmentTransaction.commit();
+                    }
+                    else
+                    {
+                        fragmentTransaction = manager.beginTransaction();
+                        fragmentTransaction.remove(locationFragment);
+                        fragmentTransaction.commit();
+                    }
+
+                }
+            });
+
+
         } catch (Exception e) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if (exit) {
+            finish(); // finish activity
+        } else {
+            Toast.makeText(this, "Нажмите еще раз для Выхода.",
+                    Toast.LENGTH_SHORT).show();
+            exit = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exit = false;
+                }
+            }, 3 * 1000);
+
         }
 
     }
@@ -70,6 +126,12 @@ public class ProfileActivity extends AppCompatActivity {
             SQLiteClass sqLiteClass = new SQLiteClass(getBaseContext());
             nameview.setText(sqLiteClass.GetNameById(id));
 
+            nameview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    descriptionFragment.SetText("d");
+                }
+            });
 
 
         }
@@ -85,18 +147,66 @@ public class ProfileActivity extends AppCompatActivity {
         int id = view.getId();
         switch (id) {
             case R.id.imageview_body:
+                try
+                {
+                    if(!descriptionFragment.isAdded())
+                    {
+                       FillDescription filldesc = new FillDescription(); //Дополнительный поток добавляет фрагмент, после добавления правит текст.
+                        filldesc.execute("Туловище");
+
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+                }
                 descriptionview.setText("Туловищеname \nСтата 1: 0\nСтата 2: \nСтата 3:");
                 break;
             case R.id.imageview_head:
+                try
+                {
+                    if(!descriptionFragment.isAdded())
+                    {
+                        FillDescription filldesc = new FillDescription(); //Дополнительный поток добавляет фрагмент, после добавления правит текст.
+                        filldesc.execute("Голова");
 
+                    }
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+                }
                 descriptionview.setText("Головаname \nСтата 1: 0\nСтата 2: \nСтата 3:");
                 break;
             case R.id.imageview_righthand:
-
+                try
+                {
+                    if(!descriptionFragment.isAdded())
+                    {
+                        FillDescription filldesc = new FillDescription(); //Дополнительный поток добавляет фрагмент, после добавления правит текст.
+                        filldesc.execute("Пр. рука");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+                }
                 descriptionview.setText("Праваярукаname \nСтата 1: 0\nСтата 2: \nСтата 3:");
                 break;
             case R.id.imageview_lefthand:
-
+                try
+                {
+                    if(!descriptionFragment.isAdded())
+                    {
+                        FillDescription filldesc = new FillDescription(); //Дополнительный поток добавляет фрагмент, после добавления правит текст.
+                        filldesc.execute("Л. рука");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+                }
                 descriptionview.setText("Леваярукаname \nСтата 1: 0\nСтата 2: \nСтата 3:");
                 break;
         }
@@ -111,5 +221,30 @@ public class ProfileActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(), MapActivity.class);
         startActivity(intent);
+    }
+
+    public class FillDescription extends AsyncTask<String,Void,Void>
+    {
+        String text;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(String... voids) {
+            text = voids[0];
+            fragmentTransaction = manager.beginTransaction();
+            fragmentTransaction.add(R.id.description_cont,descriptionFragment);
+            fragmentTransaction.commit();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            descriptionFragment.SetText(text); //Здесь передается инфа из бд??
+            super.onPostExecute(aVoid);
+        }
     }
 }

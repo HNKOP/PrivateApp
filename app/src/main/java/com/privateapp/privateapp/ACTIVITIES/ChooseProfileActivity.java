@@ -110,7 +110,9 @@ public class ChooseProfileActivity extends AppCompatActivity {
                 }
 
                 Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+                overridePendingTransition(0,0);
                 
             }
 

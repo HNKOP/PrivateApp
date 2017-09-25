@@ -21,26 +21,7 @@ public class StatusFragment extends Fragment {
     Button profilebutton,battlebutton;
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.status_fragment,null);
-        profilebutton = (Button) view.findViewById(R.id.profile_button);
-        profilebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ProfileActivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(0,0);
-            }
-        });
-
-        battlebutton = (Button) view.findViewById(R.id.battle_button);
-        battlebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), BattleActivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(0,0);
-            }
-        });
+        View view = inflater.inflate(R.layout.status_fragment,container,false);
 
         return view;
     }

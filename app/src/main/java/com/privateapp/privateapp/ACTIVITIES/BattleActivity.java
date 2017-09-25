@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.privateapp.privateapp.FRAGMENTS.LocationFragment;
 import com.privateapp.privateapp.FRAGMENTS.StatusFragment;
 import com.privateapp.privateapp.R;
 
@@ -28,6 +29,7 @@ public class BattleActivity extends AppCompatActivity {
     Button buttonTurn;
     FragmentManager manager;
     StatusFragment statusfragment;
+    LocationFragment locationFragment;
     FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class BattleActivity extends AppCompatActivity {
 
         manager = getSupportFragmentManager();
         statusfragment =  new StatusFragment();
+        locationFragment = new LocationFragment();
+
         fragmentTransaction = manager.beginTransaction();
         fragmentTransaction.add(R.id.status_cont,statusfragment);
         fragmentTransaction.commit();
@@ -56,6 +60,26 @@ public class BattleActivity extends AppCompatActivity {
             decorView.setSystemUiVisibility(uiOptions);
             TextView titleview = (TextView) findViewById(R.id.location_view);
             titleview.setText("Битва");
+
+            final Button locationbutton = findViewById(R.id.openlocations_button);
+            locationbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!locationFragment.isAdded())
+                    {
+                        fragmentTransaction = manager.beginTransaction();
+                        fragmentTransaction.add(R.id.location_cont,locationFragment);
+                        fragmentTransaction.commit();
+                    }
+                    else
+                    {
+                        fragmentTransaction = manager.beginTransaction();
+                        fragmentTransaction.remove(locationFragment);
+                        fragmentTransaction.commit();
+                    }
+
+                }
+            });
         }
         catch (Exception e)
         {
@@ -63,6 +87,8 @@ public class BattleActivity extends AppCompatActivity {
         }
 
     }
+
+
 
     public void initObjects() {
         heroHp = (ProgressBar) findViewById(R.id.progressBar_herohp);
@@ -117,7 +143,7 @@ public class BattleActivity extends AppCompatActivity {
 
             try
             {
-               Thread.sleep(2000);
+               Thread.sleep(1000);
             }
             catch (Exception e)
             {
