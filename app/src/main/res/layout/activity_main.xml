@@ -7,7 +7,7 @@
     tools:context="com.privateapp.privateapp.ACTIVITIES.MainActivity"
     android:orientation="vertical">
 
-   <WebView
+   <VideoView
        android:id="@+id/background_view"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
@@ -19,7 +19,8 @@
        android:id="@+id/nametextview"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="Вход в приложение"
+       android:text="Добро пожаловать"
+       android:textColor="#ffffff"
        android:layout_centerHorizontal="true"
        android:textSize="50sp"
        android:layout_margin="10dp"/>
@@ -29,6 +30,7 @@
        android:layout_height="75dp"
        android:layout_centerInParent="true"
        android:background="@drawable/enter"
+       android:alpha="0.3"
        android:onClick="onClick"/>
 
 

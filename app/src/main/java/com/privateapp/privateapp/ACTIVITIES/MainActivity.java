@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 
 import com.privateapp.privateapp.ACTIVITIES.ChooseProfileActivity;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements
     TextView data;
     ImageView imgdata;
     TextView textview;
-    WebView webview;
+    VideoView webview;
     Button button;
 
     @Override
@@ -41,9 +44,8 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textview = (TextView) findViewById(R.id.nametextview);
-        webview = (WebView) findViewById(R.id.background_view);
-        webview.loadUrl("file:///android_asset/pit.gif");
-        webview.setInitialScale(100);
+
+        //webview.setInitialScale(100);
         button = (Button) findViewById(R.id.button_text);
 
 
@@ -99,6 +101,16 @@ public class MainActivity extends AppCompatActivity implements
             View decorView = getWindow().getDecorView();
             int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
             decorView.setSystemUiVisibility(uiOptions);
+
+            webview = (VideoView) findViewById(R.id.background_view);
+            webview.setVideoURI(Uri.parse("android.resource://"+ getPackageName()+"/"+ R.raw.campfire));
+            webview.start();
+            webview.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    webview.start();
+                }
+            });
         }
         catch (Exception e)
         {

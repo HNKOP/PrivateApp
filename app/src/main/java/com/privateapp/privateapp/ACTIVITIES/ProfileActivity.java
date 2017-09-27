@@ -1,6 +1,7 @@
 package com.privateapp.privateapp.ACTIVITIES;
 
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.privateapp.privateapp.ACTIVITIES.BattleActivity;
 import com.privateapp.privateapp.ACTIVITIES.MapActivity;
+import com.privateapp.privateapp.ADAPTERS.HeroAdapter;
 import com.privateapp.privateapp.DATABASE.SQLiteClass;
 import com.privateapp.privateapp.FRAGMENTS.DescriptionFragment;
 import com.privateapp.privateapp.FRAGMENTS.LocationFragment;
@@ -155,13 +157,50 @@ public class ProfileActivity extends AppCompatActivity {
                         filldesc.execute("Туловище");
 
                     }
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    try
+                                    {
+
+                                    }
+                                    catch (Exception e)
+                                    {
+
+                                    }
+
+
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    //No button clicked
+                                    break;
+                            }
+                        }
+                    };
 
                 }
                 catch (Exception e)
                 {
                     Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
-                descriptionview.setText("Туловищеname \nСтата 1: 0\nСтата 2: \nСтата 3:");
+                descriptionview.setText("Туловищеname \nСтата \t1: 0\nСтата \t2: \nСтата \t\t3:" +
+                        "\n a" +
+                        "\n a" +
+                        "\n a" +
+                        "\n a" +
+                        "\n a" +
+                        "\n a" +
+                        "\n a" +
+                        "\n a" +
+                        "\n a" +
+                        "\n a" +
+                        "\n a" +
+                        "\n a" +
+                        "\n a" +
+                        "\n b");
                 break;
             case R.id.imageview_head:
                 try

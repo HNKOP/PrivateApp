@@ -17,9 +17,23 @@ public class SQLiteClass {
     public SQLiteClass(Context context) {
         this.context = context;
         database = context.openOrCreateDatabase("privateapp.db",context.MODE_PRIVATE,null);
-        database.execSQL("CREATE TABLE IF NOT EXISTS heroes (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, LEVEL INTEGER, STR INTEGER, AGL INTEGER, INT INTEGER)");
+        InitTables();
     }
-
+    public void InitTables()
+    {
+        //DB Heroes
+        database.execSQL("CREATE TABLE IF NOT EXISTS heroes " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT, " +
+                "level INTEGER, " +
+                "str INTEGER, " +
+                "agl INTEGER, " +
+                "int INTEGER)");
+        //DB Locations
+        database.execSQL("CREATE TABLE IF NOT EXISTS locations " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT)");
+    }
     public void InsertHero(Hero hero)
     {
         database.execSQL("INSERT INTO heroes (NAME,LEVEL,STR,AGL,INT) VALUES ('" + hero.getName() + "'," + String.valueOf(hero.getLevel()) + "," + String.valueOf(hero.getStrength()) + "," + String.valueOf(hero.getAgility()) + "," + String.valueOf(hero.getIntelligence())+ ");");
@@ -57,7 +71,7 @@ public class SQLiteClass {
         if(cursor.moveToFirst()){
             do{
                 heroeslist.add(new Hero(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),100,cursor.getInt(3),cursor.getInt(4),cursor.getInt(5)));
-            }
+        }
             while(cursor.moveToNext());
         }
         cursor.close();
