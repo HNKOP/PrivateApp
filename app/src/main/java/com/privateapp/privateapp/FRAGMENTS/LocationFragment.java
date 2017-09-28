@@ -28,6 +28,7 @@ public class LocationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 getActivity().overridePendingTransition(0,0);
             }
@@ -37,6 +38,7 @@ public class LocationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), BattleActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 getActivity().overridePendingTransition(0,0);
             }

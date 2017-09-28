@@ -17,6 +17,8 @@ package com.privateapp.privateapp.ACTIVITIES;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import com.azoft.carousellayoutmanager.CarouselLayoutManager;
+        import com.azoft.carousellayoutmanager.CenterScrollListener;
         import com.privateapp.privateapp.ADAPTERS.HeroAdapter;
         import com.privateapp.privateapp.DATABASE.SQLiteClass;
         import com.privateapp.privateapp.OBJECTS.Hero;
@@ -75,6 +77,7 @@ public class ChooseProfileActivity extends AppCompatActivity {
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
         if(heroeslist.size() > 0 )
         {
             mAdapter = new HeroAdapter(heroeslist);
@@ -110,7 +113,7 @@ public class ChooseProfileActivity extends AppCompatActivity {
                 }
 
                 Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 overridePendingTransition(0,0);
                 

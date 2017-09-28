@@ -1,5 +1,6 @@
 package com.privateapp.privateapp.ACTIVITIES;
 
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,10 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.TextureView;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +35,9 @@ public class BattleActivity extends AppCompatActivity {
     StatusFragment statusfragment;
     LocationFragment locationFragment;
     FragmentTransaction fragmentTransaction;
+    ImageView arrowview;
+    TranslateAnimation mAnimation;
+    Integer[] location;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +50,6 @@ public class BattleActivity extends AppCompatActivity {
         fragmentTransaction = manager.beginTransaction();
         fragmentTransaction.add(R.id.status_cont,statusfragment);
         fragmentTransaction.commit();
-
-
 
         initObjects();
     }
@@ -80,6 +85,9 @@ public class BattleActivity extends AppCompatActivity {
 
                 }
             });
+
+            arrowview = (ImageView) findViewById(R.id.arrow_view);
+            arrowview.setVisibility(View.GONE);
         }
         catch (Exception e)
         {
@@ -105,6 +113,11 @@ public class BattleActivity extends AppCompatActivity {
         currentherohp = totalherohp;
         currentenemyhp = totalenemyhp;
         damage = 10;
+        location = new Integer[4];
+        location[0] = 0;
+        location[1] = 800;
+        location[2] = 300;
+        location[3] = 300;
     }
     public void onDoDamageClick(View view)
     {
@@ -123,10 +136,68 @@ public class BattleActivity extends AppCompatActivity {
         }
 
 
+        //mAnimation.setRepeatMode(Animation.REVERSE);
+        mAnimation = new TranslateAnimation(location[0],location[1],location[2],location[3]);
+        mAnimation.setDuration(1000);
+        mAnimation.setRepeatCount(0);
+        arrowview.setAnimation(mAnimation);
+
         enemyTurn.execute();
 
     }
 
+    public void onRadioButtonClick(View view)
+    {
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch(view.getId()) {
+            case R.id.radiobutton_atkhead:
+                if(checked)
+                {
+                    location[0] = 0;
+                    location[1] = 800;
+                    location[2] = 0;
+                    location[3] = 0;
+                }
+             break;
+            case R.id.radiobutton_atkbody:
+                if(checked)
+                {
+                    location[0] = 0;
+                    location[1] = 800;
+                    location[2] = 300;
+                    location[3] = 300;
+                }
+                break;
+            case R.id.radiobutton_atklegs:
+                if(checked)
+                {
+                    location[0] = 0;
+                    location[1] = 800;
+                    location[2] = 600;
+                    location[3] = 600;
+                }
+                break;
+            case R.id.radiobutton_defhead:
+                if(checked)
+                {
+
+                }
+                break;
+            case R.id.radiobutton_defbody:
+                if(checked)
+                {
+
+                }
+                break;
+            case R.id.radiobutton_deflegs:
+                if(checked)
+                {
+
+                }
+                break;
+        }
+    }
     class EnemyTurn extends AsyncTask<Void,Void,Void>
     {
         @Override
@@ -135,7 +206,7 @@ public class BattleActivity extends AppCompatActivity {
             progressTurn.setVisibility(View.VISIBLE);
             textviewTurn.setText("Ход противника");
             buttonTurn.setEnabled(false);
-
+            arrowview.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -161,6 +232,7 @@ public class BattleActivity extends AppCompatActivity {
             buttonTurn.setEnabled(true);
             progressTurn.setVisibility(View.GONE);
             textviewTurn.setText("Твой ход");
+            arrowview.setVisibility(View.GONE);
 
             if(currentherohp <= 0)
             {

@@ -171,7 +171,6 @@ public class ProfileActivity extends AppCompatActivity {
 
                                     }
 
-
                                     break;
 
                                 case DialogInterface.BUTTON_NEGATIVE:
@@ -186,7 +185,7 @@ public class ProfileActivity extends AppCompatActivity {
                 {
                     Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
-                descriptionview.setText("Туловищеname \nСтата \t1: 0\nСтата \t2: \nСтата \t\t3:" +
+                descriptionview.setText("Туловищеname \nСтата \t 1: 0\nСтата \t2: \nСтата \t\t3:" +
                         "\n a" +
                         "\n a" +
                         "\n a" +

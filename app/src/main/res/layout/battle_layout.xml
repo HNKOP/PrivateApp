@@ -46,6 +46,50 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="50dp">
+            <RadioButton
+                android:id="@+id/radiobutton_defhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClick"/>
+            <RadioButton
+                android:id="@+id/radiobutton_defbody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:onClick="onRadioButtonClick"/>
+            <RadioButton
+                android:id="@+id/radiobutton_deflegs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClick"/>
+        </RadioGroup>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="50dp">
+            <RadioButton
+                android:id="@+id/radiobutton_atkhead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClick"/>
+            <RadioButton
+                android:id="@+id/radiobutton_atkbody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:onClick="onRadioButtonClick"/>
+            <RadioButton
+                android:id="@+id/radiobutton_atklegs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClick"/>
+        </RadioGroup>
         <ProgressBar
             android:id="@+id/progressBar_turn"
             android:layout_width="wrap_content"
@@ -89,6 +133,13 @@
     </RelativeLayout>
     </LinearLayout>
 
+ <ImageView
+     android:id="@+id/arrow_view"
+     android:layout_width="150dp"
+     android:layout_height="75dp"
+     android:src="@drawable/arrow"
 
+     android:layout_marginTop="50dp"
+     android:layout_marginLeft="100dp"/>
 
 </RelativeLayout>
