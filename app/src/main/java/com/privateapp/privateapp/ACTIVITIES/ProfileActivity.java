@@ -31,10 +31,11 @@ public class ProfileActivity extends AppCompatActivity {
     TextView descriptionview, nameview;
     SharedPreferences sharedPreferences = null;
     SharedPreferences.Editor editor;
-    FragmentManager manager;
+
     StatusFragment statusfragment;
     DescriptionFragment descriptionFragment;
     LocationFragment locationFragment;
+    FragmentManager manager;
     FragmentTransaction fragmentTransaction;
     Boolean exit = false;
 

@@ -7,23 +7,23 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:text="Профиль"
-        android:textSize="10sp"/>
+        android:textSize="9sp"/>
     <Button
         android:id="@+id/loc_battle_button"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:text="Битва"
-        android:textSize="10sp"/>
+        android:text="Карта"
+        android:textSize="9sp"/>
     <Button
         android:id="@+id/loc_inventory_button"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:text="Инвентарь"
-        android:textSize="10sp"/>
+        android:textSize="9sp"/>
     <Button
         android:id="@+id/loc_settings_button"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:text="Настройки"
-        android:textSize="10sp"/>
+        android:textSize="9sp"/>
 </LinearLayout>

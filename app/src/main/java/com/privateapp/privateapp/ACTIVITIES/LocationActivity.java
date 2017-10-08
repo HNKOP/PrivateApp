@@ -12,7 +12,7 @@ import com.privateapp.privateapp.R;
  * Created by emilg on 05.10.2017.
  */
 
-public class FirstLocationActivity extends AppCompatActivity {
+public class LocationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,5 +34,10 @@ public class FirstLocationActivity extends AppCompatActivity {
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    public void onClickLocaton(View view)
+    {
+        Toast.makeText(this, "Вы выбрали 1 локацию", Toast.LENGTH_SHORT).show();
     }
 }
