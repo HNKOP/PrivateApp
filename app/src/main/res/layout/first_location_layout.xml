@@ -5,15 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/mpp"
-            android:scaleType="center"/>
-    </HorizontalScrollView>
+            android:src="@drawable/worldmap"
+            android:scaleType="fitXY"/>
+
 
 </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>
