@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.privateapp.privateapp.ACTIVITIES.BattleActivity;
+import com.privateapp.privateapp.ACTIVITIES.FirstLocationActivity;
 import com.privateapp.privateapp.ACTIVITIES.ProfileActivity;
 import com.privateapp.privateapp.R;
 
@@ -37,7 +38,7 @@ public class LocationFragment extends Fragment {
         battlebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), BattleActivity.class);
+                Intent intent = new Intent(getActivity(), FirstLocationActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 getActivity().overridePendingTransition(0,0);
