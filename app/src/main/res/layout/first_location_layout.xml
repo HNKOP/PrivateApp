@@ -5,12 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/worldmap"
-            android:scaleType="fitXY"/>
+            android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/worldmap_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/worldmap"
+                    android:scaleType="fitXY"/>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/sign"
+                    android:layout_marginBottom="179dp"
+                    android:layout_marginRight="128dp"
+                    android:layout_alignRight="@id/worldmap_view"
+                    android:layout_alignBottom="@id/worldmap_view"
+                     />
+        </RelativeLayout>
+
 
 
 </android.support.v4.widget.NestedScrollView>
