@@ -19,17 +19,42 @@ import com.privateapp.privateapp.R;
 public class CreateHeroActivity extends AppCompatActivity {
     SQLiteClass sqLiteClass;
     EditText editName;
+    View decorView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.createhero_layout);
+        decorView = getWindow().getDecorView();
         initObjects();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus)
+        {
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
     }
 
     public void initObjects() {
         editName = (EditText) findViewById(R.id.createhero_editname);
     }
 
+    @Override
+    public void onBackPressed()
+    {
+
+        Intent intent = new Intent(getApplicationContext(),ChooseProfileActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        overridePendingTransition(0,0);
+    }
     public void onCreateHeroClick(View view)
     {
         sqLiteClass = new SQLiteClass(getBaseContext());

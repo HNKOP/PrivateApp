@@ -38,69 +38,36 @@ public class MainActivity extends AppCompatActivity implements
     TextView textview;
     VideoView webview;
     Button button;
-
+    View decorView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        decorView = getWindow().getDecorView();
         textview = (TextView) findViewById(R.id.nametextview);
 
         //webview.setInitialScale(100);
         button = (Button) findViewById(R.id.button_text);
 
-
-//        AnimationDrawable pro = (AnimationDrawable)button.getBackground();
-//        pro.start();
-        //initBackgroundAnimation();
     }
 
-//    private void initBackgroundAnimation()
-//    {
-//        final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
-//      //  final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
-//
-//        final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
-//        animator.setRepeatCount(ValueAnimator.INFINITE);
-//        animator.setInterpolator(new LinearInterpolator());
-//        animator.setDuration(10000L);
-//        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//            @Override
-//            public void onAnimationUpdate(ValueAnimator animation) {
-//                final float progress = (float) animation.getAnimatedValue();
-//                final float width = backgroundOne.getWidth();
-//
-//                textview.setText(String.valueOf(progress));
-//
-//                float translationX;
-//                if(progress > 0.5)
-//                {
-//                    translationX = width * (-progress + 1f) * 0.1f;
-//
-//
-//                }
-//                else
-//                {
-//                    translationX = width * progress * 0.1f;
-//
-//                }
-//                backgroundOne.setTranslationX(translationX);
-//               // backgroundTwo.setTranslationX(translationX - width);
-//
-//
-//            }
-//        });
-//        animator.start();
-//
-//    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus)
+        {
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    |View.SYSTEM_UI_FLAG_FULLSCREEN
+                    |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
         try
         {
-            View decorView = getWindow().getDecorView();
-            int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-            decorView.setSystemUiVisibility(uiOptions);
+
 
             webview = (VideoView) findViewById(R.id.background_view);
             webview.setVideoURI(Uri.parse("android.resource://"+ getPackageName()+"/"+ R.raw.campfire));

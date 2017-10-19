@@ -1,5 +1,6 @@
 package com.privateapp.privateapp.ACTIVITIES;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -39,5 +40,9 @@ public class LocationActivity extends AppCompatActivity {
     public void onClickLocaton(View view)
     {
         Toast.makeText(this, "Вы выбрали 1 локацию", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), BattleActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
+        this.overridePendingTransition(0,0);
     }
 }
