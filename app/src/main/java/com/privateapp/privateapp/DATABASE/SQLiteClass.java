@@ -33,20 +33,43 @@ public class SQLiteClass {
         database.execSQL("CREATE TABLE IF NOT EXISTS locations " +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT)");
+        database.execSQL("CREATE TABLE IF NOT EXISTS enemies " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT, " +
+                "level INTEGER, " +
+                "str INTEGER, " +
+                "agl INTEGER, " +
+                "int INTEGER)");
+        database.execSQL("CREATE TABLE IF NOT EXISTS items " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name TEXT," +
+                "description TEXT)");
+        database.execSQL("CREATE TABLE IF NOT EXISTS enemieslocations " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "id_enemy INTEGER," +
+                "id_location INTEGER)");
+        database.execSQL("CREATE TABLE IF NOT EXISTS enemiesitems " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "id_enemy INTEGER," +
+                "id_item INTEGER)");
+        database.execSQL("CREATE TABLE IF NOT EXISTS heroesitems " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "id_hero INTEGER," +
+                "id_item INTEGER)");
     }
     public void InsertHero(Hero hero)
     {
-        database.execSQL("INSERT INTO heroes (NAME,LEVEL,STR,AGL,INT) VALUES ('" + hero.getName() + "'," + String.valueOf(hero.getLevel()) + "," + String.valueOf(hero.getStrength()) + "," + String.valueOf(hero.getAgility()) + "," + String.valueOf(hero.getIntelligence())+ ");");
+        database.execSQL("INSERT INTO heroes (name,level,str,agl,int) VALUES ('" + hero.getName() + "'," + String.valueOf(hero.getLevel()) + "," + String.valueOf(hero.getStrength()) + "," + String.valueOf(hero.getAgility()) + "," + String.valueOf(hero.getIntelligence())+ ");");
     }
     public void DeleteHero(int id)
     {
-        database.execSQL("DELETE FROM heroes WHERE ID = " + String.valueOf(id)+";");
+        database.execSQL("DELETE FROM heroes WHERE id = " + String.valueOf(id)+";");
     }
     public String GetNameById(int id)
     {
         try
         {
-            Cursor cursor = database.rawQuery("SELECT * FROM heroes WHERE ID = "+ String.valueOf(id) + ";", null);
+            Cursor cursor = database.rawQuery("SELECT * FROM heroes WHERE id = "+ String.valueOf(id) + ";", null);
             if(cursor.moveToFirst()){
                 return cursor.getString(1);
             }
@@ -56,13 +79,25 @@ public class SQLiteClass {
             return e.toString();
         }
 
-        return "Not found";
+        return "Error: not found";
     }
-    public void CreateTestheroes()
+    public void CreateTestData()
     {
-        database.execSQL("INSERT INTO heroes (NAME,LEVEL,STR,AGL,INT) VALUES ('Lancelot', 10,5,5,5);");
-        database.execSQL("INSERT INTO heroes (NAME,LEVEL,STR,AGL,INT) VALUES ('Rafael', 5,15,2,4);");
-        database.execSQL("INSERT INTO heroes (NAME,LEVEL,STR,AGL,INT) VALUES ('Goku', 9000,150,100,20);");
+        database.execSQL("INSERT INTO heroes (name,level,str,agl,int) VALUES ('Lancelot', 10,5,5,5);");
+        database.execSQL("INSERT INTO heroes (name,level,str,agl,int) VALUES ('Rafael', 5,15,2,4);");
+        database.execSQL("INSERT INTO heroes (name,level,str,agl,int) VALUES ('Goku', 9000,150,100,20);");
+
+        database.execSQL("INSERT INTO enemies (name,level,str,agl,int) VALUES ('Kusaka', 10,5,5,5);");
+        database.execSQL("INSERT INTO enemies (name,level,str,agl,int) VALUES ('Grizyaka', 5,15,2,4);");
+        database.execSQL("INSERT INTO enemies (name,level,str,agl,int) VALUES ('Cherepaha', 9000,150,100,20);");
+
+        database.execSQL("INSERT INTO items (name,description) VALUES ('Меч', 'Чтобы рубить');");
+        database.execSQL("INSERT INTO items (name,description) VALUES ('Дубина', 'Чтобы крушить');");
+        database.execSQL("INSERT INTO items (name,description) VALUES ('Котлетки', 'Чтобы кушать');");
+    }
+    public void GiveItemToHero(int id_item,int id_hero)
+    {
+        database.execSQL("INSERT INTO heroesitems (id_item,id_hero) VALUES ("+ String.valueOf(id_item) +", "+String.valueOf(id_hero)+");");
     }
     public List<Hero> GetAllHeroes()
     {

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/name_location"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="Название локации"
+                android:textSize="25sp" />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:background="#c0c0c0"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Возможные враги:"
+                android:layout_margin="15dp"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/enemies_names"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Враг1,враг2,враг3"
+                android:textSize="18sp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"/>
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:background="#c0c0c0"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Возможная добыча:"
+                android:layout_margin="15dp"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/items_names"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3Предмет1,предмет2,предмет3"
+                android:textSize="18sp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/cancel_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Отступить"/>
+                <Button
+                    android:id="@+id/confirm_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Отправиться"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

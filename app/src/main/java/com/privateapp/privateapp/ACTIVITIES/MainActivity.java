@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements
         {
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     |View.SYSTEM_UI_FLAG_FULLSCREEN
-                    |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+                    |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY); //Здесь убрано 2 флага, которые почему-то добавляют полосы вне layout'а
         }
     }
 
