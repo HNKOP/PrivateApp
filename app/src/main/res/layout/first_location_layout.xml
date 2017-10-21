@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
-<android.support.v4.widget.NestedScrollView
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -13,7 +13,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/worldmap"
-                    android:scaleType="fitXY"/>
+                    android:scaleType="fitXY"
+                    />
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -22,10 +23,10 @@
                     android:layout_marginRight="128dp"
                     android:layout_alignRight="@id/worldmap_view"
                     android:layout_alignBottom="@id/worldmap_view"
-                     />
+                    android:onClick="onClickLocaton" />
         </RelativeLayout>
 
 
 
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>
 </RelativeLayout>

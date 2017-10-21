@@ -40,22 +40,38 @@ public class ChooseProfileActivity extends AppCompatActivity {
     List<Hero> heroeslist;
     SharedPreferences sharedPreferences = null;
     SharedPreferences.Editor editor;
+    View decorView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        decorView = getWindow().getDecorView();
         setContentView(R.layout.chooseprofile_layout);
         sharedPreferences = getSharedPreferences("PrivatePref",MODE_PRIVATE);
         editor = sharedPreferences.edit();
         initObjects();
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus)
+        {
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         try {
-            View decorView = getWindow().getDecorView();
-            int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-            decorView.setSystemUiVisibility(uiOptions);
+
+
         } catch (Exception e) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
@@ -89,17 +105,6 @@ public class ChooseProfileActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 final TextView txtName = view.findViewById(R.id.recycleitem_name);
                 final TextView txtId = view.findViewById(R.id.recycleitem_id);
-
-
-//                backgroundDrawable = view.getBackground();
-//                if(previousview != null)
-//                {
-//                    previousview.setBackgroundDrawable(backgroundDrawable);
-//                }
-//
-//
-//                view.setBackgroundColor(Color.YELLOW);
-//                previousview = view;
 
                 Toast.makeText(ChooseProfileActivity.this,"Вы выбрали: " + txtName.getText().toString(), Toast.LENGTH_SHORT).show();
                 try

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.privateapp.privateapp.ACTIVITIES.MainActivity"
-    android:orientation="vertical">
+       android:orientation="vertical"
+    android:background="#000000">
 
    <VideoView
        android:id="@+id/background_view"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
+       android:layout_alignParentTop="true"
        />
 
 
@@ -23,7 +24,8 @@
        android:textColor="#ffffff"
        android:layout_centerHorizontal="true"
        android:textSize="50sp"
-       android:layout_margin="20dp"/>
+       android:layout_margin="20dp"
+       />
    <Button
        android:id="@+id/button_text"
        android:layout_width="300dp"

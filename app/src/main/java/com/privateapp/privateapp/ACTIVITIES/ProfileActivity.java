@@ -31,10 +31,11 @@ public class ProfileActivity extends AppCompatActivity {
     TextView descriptionview, nameview;
     SharedPreferences sharedPreferences = null;
     SharedPreferences.Editor editor;
-    FragmentManager manager;
+    View decorView;
     StatusFragment statusfragment;
     DescriptionFragment descriptionFragment;
     LocationFragment locationFragment;
+    FragmentManager manager;
     FragmentTransaction fragmentTransaction;
     Boolean exit = false;
 
@@ -43,32 +44,29 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_layout);
-        sharedPreferences = getSharedPreferences("PrivatePref",MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-
-        manager = getSupportFragmentManager();
-        statusfragment =  new StatusFragment();
-        descriptionFragment = new DescriptionFragment();
-        locationFragment = new LocationFragment();
-
-        fragmentTransaction = manager.beginTransaction();
-        fragmentTransaction.add(R.id.status_cont,statusfragment);
-
-        fragmentTransaction.commit();
-
 
         InitObjects();
 
     }
 
     @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus)
+        {
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_FULLSCREEN
+            |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         try {
-            View decorView = getWindow().getDecorView();
-            int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-            decorView.setSystemUiVisibility(uiOptions);
-
             TextView titleview = (TextView) findViewById(R.id.location_view);
             titleview.setText("Профиль");
 
@@ -120,6 +118,17 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void InitObjects() {
+        sharedPreferences = getSharedPreferences("PrivatePref",MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        manager = getSupportFragmentManager();
+        statusfragment =  new StatusFragment();
+        descriptionFragment = new DescriptionFragment();
+        locationFragment = new LocationFragment();
+        fragmentTransaction = manager.beginTransaction();
+        fragmentTransaction.add(R.id.status_cont,statusfragment);
+        fragmentTransaction.commit();
+
+        decorView = getWindow().getDecorView();
         descriptionview = (TextView) findViewById(R.id.description_textview);
         nameview = (TextView) findViewById(R.id.title2_view);
         try

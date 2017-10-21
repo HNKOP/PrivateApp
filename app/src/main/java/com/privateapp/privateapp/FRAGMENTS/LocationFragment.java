@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.privateapp.privateapp.ACTIVITIES.BattleActivity;
-import com.privateapp.privateapp.ACTIVITIES.FirstLocationActivity;
+import com.privateapp.privateapp.ACTIVITIES.LocationActivity;
+import com.privateapp.privateapp.ACTIVITIES.InventoryActivity;
 import com.privateapp.privateapp.ACTIVITIES.ProfileActivity;
 import com.privateapp.privateapp.R;
 
@@ -38,13 +38,21 @@ public class LocationFragment extends Fragment {
         battlebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), FirstLocationActivity.class);
+                Intent intent = new Intent(getActivity(), LocationActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 getActivity().overridePendingTransition(0,0);
             }
         });
-
+        inventorybutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), InventoryActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+                getActivity().overridePendingTransition(0,0);
+            }
+        });
         return view;
     }
 }

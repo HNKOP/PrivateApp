@@ -1,5 +1,7 @@
 package com.privateapp.privateapp.ACTIVITIES;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.TextureView;
@@ -31,6 +34,7 @@ public class BattleActivity extends AppCompatActivity {
     float hp,totalherohp,totalenemyhp,damage,currentherohp,currentenemyhp;
     TextView textviewTurn;
     Button buttonTurn;
+    View decorView;
     FragmentManager manager;
     StatusFragment statusfragment;
     LocationFragment locationFragment;
@@ -42,7 +46,7 @@ public class BattleActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.battle_layout);
-
+        decorView = getWindow().getDecorView();
         manager = getSupportFragmentManager();
         statusfragment =  new StatusFragment();
         locationFragment = new LocationFragment();
@@ -54,15 +58,26 @@ public class BattleActivity extends AppCompatActivity {
         initObjects();
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus)
+        {
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    |View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
         try
         {
-            View decorView = getWindow().getDecorView();
-            int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-            decorView.setSystemUiVisibility(uiOptions);
+
             TextView titleview = (TextView) findViewById(R.id.location_view);
             titleview.setText("Битва");
 
@@ -107,7 +122,7 @@ public class BattleActivity extends AppCompatActivity {
         textviewTurn.setText("Твои ход");
         buttonTurn = (Button) findViewById(R.id.button_turn);
         totalherohp = 100f;
-        totalenemyhp = 220f;
+        totalenemyhp = 90f;
         heroHp.setProgress(100);
         enemyHp.setProgress(100);
         currentherohp = totalherohp;
@@ -133,6 +148,28 @@ public class BattleActivity extends AppCompatActivity {
             Toast.makeText(this, "Вы победили", Toast.LENGTH_SHORT).show();
             currentenemyhp = totalenemyhp;
             enemyHp.setProgress(100);
+            try
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("Вы победили!").setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        startActivity(intent);
+
+                    }
+                })
+                       .show();
+
+
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
         }
 
 
