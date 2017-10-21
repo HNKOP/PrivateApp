@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.animation.Animation;
@@ -150,19 +151,31 @@ public class BattleActivity extends AppCompatActivity {
             enemyHp.setProgress(100);
             try
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Вы победили!").setPositiveButton("Ок", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                        startActivity(intent);
+                try
+                {
+                    LayoutInflater inflater = this.getLayoutInflater();
+                    View content = inflater.inflate(R.layout.afterbattle_layout,null);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    final Button OKbtn = content.findViewById(R.id.ok_button);
+                    builder.setView(content);
+                    final AlertDialog dialog = builder.create();
+                    dialog.show();
 
-                    }
-                })
-                       .show();
-
-
+                    OKbtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                            startActivity(intent);
+                            getParent().overridePendingTransition(0,0);
+                        }
+                    });
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+                }
 
             }
             catch (Exception e)
