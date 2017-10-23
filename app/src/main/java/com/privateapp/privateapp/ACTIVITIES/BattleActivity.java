@@ -41,6 +41,7 @@ public class BattleActivity extends AppCompatActivity {
     LocationFragment locationFragment;
     FragmentTransaction fragmentTransaction;
     ImageView arrowview;
+    ImageView gamesheroiew;
     TranslateAnimation mAnimation;
     Integer[] location;
     @Override
@@ -257,6 +258,8 @@ public class BattleActivity extends AppCompatActivity {
             textviewTurn.setText("Ход противника");
             buttonTurn.setEnabled(false);
             arrowview.setVisibility(View.VISIBLE);
+            gamesheroiew = (ImageView) findViewById(R.id.games_hero);
+            gamesheroiew.setVisibility(View.VISIBLE);
         }
 
         @Override

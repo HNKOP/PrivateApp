@@ -22,6 +22,13 @@
         android:background="#dddddd"
         android:layout_weight="3">
 
+        <ImageView
+            android:id="@+id/games_hero"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/games_hero"
+            />
+
         <ProgressBar
             android:id="@+id/progressBar_herohp"
             style="?android:attr/progressBarStyleHorizontal"
