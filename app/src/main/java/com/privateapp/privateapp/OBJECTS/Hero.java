@@ -10,6 +10,42 @@ public class Hero {
     int intelligence;
     int agility;
     int level;
+    int xptonext;
+    int physarmor;
+    int magicarmor;
+    int evasion;
+
+    public int getXptonext() {
+        return xptonext;
+    }
+
+    public void setXptonext(int xpnextlvl) {
+        this.xptonext = xpnextlvl;
+    }
+
+    public int getPhysarmor() {
+        return physarmor;
+    }
+
+    public void setPhysarmor(int physarmor) {
+        this.physarmor = physarmor;
+    }
+
+    public int getMagicarmor() {
+        return magicarmor;
+    }
+
+    public void setMagicarmor(int magicarmor) {
+        this.magicarmor = magicarmor;
+    }
+
+    public int getEvasion() {
+        return evasion;
+    }
+
+    public void setEvasion(int evasion) {
+        this.evasion = evasion;
+    }
 
     public void setLevel(int level) {
         this.level = level;
@@ -20,15 +56,19 @@ public class Hero {
         return level;
     }
 
-    public Hero(int id, String name, int level, float basichp, int strength, int agility, int intelligence) {
+    public Hero(int id, String name) {
         this.id = id;
         this.name = name;
-        this.basichp = basichp;
-        this.totalhp = basichp + strength*10;
-        this.strength = strength;
-        this.intelligence = intelligence;
-        this.agility = agility;
-        this.level = level;
+        this.basichp = 100;
+        this.totalhp = 100;
+        this.strength = 0;
+        this.intelligence = 0;
+        this.agility = 0;
+        this.level = 0;
+        this.xptonext = 100;
+        this.physarmor = 0;
+        this.magicarmor = 0;
+        this.evasion = 0;
     }
 
     public int getId() {

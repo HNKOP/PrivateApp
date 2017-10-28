@@ -24,6 +24,7 @@ import com.privateapp.privateapp.DATABASE.SQLiteClass;
 import com.privateapp.privateapp.FRAGMENTS.DescriptionFragment;
 import com.privateapp.privateapp.FRAGMENTS.LocationFragment;
 import com.privateapp.privateapp.FRAGMENTS.StatusFragment;
+import com.privateapp.privateapp.OBJECTS.Hero;
 import com.privateapp.privateapp.R;
 
 
@@ -135,8 +136,15 @@ public class ProfileActivity extends AppCompatActivity {
         {
             int id = sharedPreferences.getInt("PROFILE_ID",0);
             SQLiteClass sqLiteClass = new SQLiteClass(getBaseContext());
-            nameview.setText(sqLiteClass.GetNameById(id));
+            Hero hero = sqLiteClass.GetHeroById(id);
+            nameview.setText(hero.getName());
 
+            descriptionview.setText("Сила = " + String.valueOf(hero.getStrength()) + "\n" +
+                    "Ловкость = " + String.valueOf(hero.getAgility()) + "\n" +
+                    "Интеллект = " + String.valueOf(hero.getIntelligence()) + "\n" +
+                    "Физ.армор = " + String.valueOf(hero.getPhysarmor()) + "\n" +
+                    "Маг.армор = " + String.valueOf(hero.getMagicarmor()) + "\n" +
+                    "Уворот = " + String.valueOf(hero.getEvasion()));
             nameview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -144,7 +152,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             });
 
-
+            sqLiteClass.Close();
         }
         catch (Exception e)
         {
@@ -194,21 +202,7 @@ public class ProfileActivity extends AppCompatActivity {
                 {
                     Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
-                descriptionview.setText("Туловищеname \nСтата \t 1: 0\nСтата \t2: \nСтата \t\t3:" +
-                        "\n a" +
-                        "\n a" +
-                        "\n a" +
-                        "\n a" +
-                        "\n a" +
-                        "\n a" +
-                        "\n a" +
-                        "\n a" +
-                        "\n a" +
-                        "\n a" +
-                        "\n a" +
-                        "\n a" +
-                        "\n a" +
-                        "\n b");
+
                 break;
             case R.id.imageview_head:
                 try
@@ -224,7 +218,7 @@ public class ProfileActivity extends AppCompatActivity {
                 {
                     Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
-                descriptionview.setText("Головаname \nСтата 1: 0\nСтата 2: \nСтата 3:");
+
                 break;
             case R.id.imageview_righthand:
                 try
@@ -239,7 +233,7 @@ public class ProfileActivity extends AppCompatActivity {
                 {
                     Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
-                descriptionview.setText("Праваярукаname \nСтата 1: 0\nСтата 2: \nСтата 3:");
+
                 break;
             case R.id.imageview_lefthand:
                 try
@@ -254,7 +248,7 @@ public class ProfileActivity extends AppCompatActivity {
                 {
                     Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
-                descriptionview.setText("Леваярукаname \nСтата 1: 0\nСтата 2: \nСтата 3:");
+
                 break;
         }
     }

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.privateapp.privateapp.R;
@@ -58,9 +59,20 @@ public class LocationActivity extends AppCompatActivity {
     {
         try
         {
+            String name;
+            switch(view.getId())
+            {
+                case R.id.location1: name = "Локация 1"; break;
+                case R.id.location2: name = "Локация 2"; break;
+                case R.id.location3: name = "Локация 3"; break;
+                default: name = "Default"; break;
+            }
+
             LayoutInflater inflater = this.getLayoutInflater();
             View content = inflater.inflate(R.layout.description_location_layout,null);
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            final TextView nameview = content.findViewById(R.id.name_location);
+            nameview.setText(name);
             final Button OKbtn = content.findViewById(R.id.confirm_button);
             final Button CANCELbtn = content.findViewById(R.id.cancel_button);
             builder.setView(content);

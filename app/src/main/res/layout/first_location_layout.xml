@@ -16,11 +16,32 @@
                     android:scaleType="fitXY"
                     />
                 <ImageView
+                    android:id="@+id/location1"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/sign"
                     android:layout_marginBottom="179dp"
                     android:layout_marginRight="128dp"
+                    android:layout_alignRight="@id/worldmap_view"
+                    android:layout_alignBottom="@id/worldmap_view"
+                    android:onClick="onClickLocaton" />
+                <ImageView
+                    android:id="@+id/location2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/sign"
+                    android:layout_marginBottom="150dp"
+                    android:layout_marginRight="260dp"
+                    android:layout_alignRight="@id/worldmap_view"
+                    android:layout_alignBottom="@id/worldmap_view"
+                    android:onClick="onClickLocaton" />
+                <ImageView
+                    android:id="@+id/location3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/sign"
+                    android:layout_marginBottom="290dp"
+                    android:layout_marginRight="330dp"
                     android:layout_alignRight="@id/worldmap_view"
                     android:layout_alignBottom="@id/worldmap_view"
                     android:onClick="onClickLocaton" />

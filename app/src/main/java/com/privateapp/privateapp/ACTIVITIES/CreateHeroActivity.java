@@ -60,11 +60,19 @@ public class CreateHeroActivity extends AppCompatActivity {
         sqLiteClass = new SQLiteClass(getBaseContext());
         if(!editName.getText().toString().isEmpty())
         {
-            Hero hero = new Hero(0,editName.getText().toString(),0,100,0,0,0);
-            sqLiteClass.InsertHero(hero);
-            Toast.makeText(this, "Персонаж создан", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(),ChooseProfileActivity.class);
-            startActivity(intent);
+            try
+            {
+                Hero hero = new Hero(0,editName.getText().toString());
+                sqLiteClass.InsertHero(hero);
+                Toast.makeText(this, "Персонаж создан", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),ChooseProfileActivity.class);
+                startActivity(intent);
+            }
+            catch (Exception e)
+            {
+                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+            }
+
         }
         else
         {

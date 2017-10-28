@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,6 +45,7 @@ public class BattleActivity extends AppCompatActivity {
     ImageView gamesheroiew;
     TranslateAnimation mAnimation;
     Integer[] location;
+    Animation swordanim;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,6 +137,7 @@ public class BattleActivity extends AppCompatActivity {
         location[1] = 800;
         location[2] = 300;
         location[3] = 300;
+        swordanim = AnimationUtils.loadAnimation(this, R.anim.swordbody);
     }
     public void onDoDamageClick(View view)
     {
@@ -188,10 +191,12 @@ public class BattleActivity extends AppCompatActivity {
 
 
         //mAnimation.setRepeatMode(Animation.REVERSE);
-        mAnimation = new TranslateAnimation(location[0],location[1],location[2],location[3]);
-        mAnimation.setDuration(1000);
-        mAnimation.setRepeatCount(0);
-        arrowview.setAnimation(mAnimation);
+//        mAnimation = new TranslateAnimation(location[0],location[1],location[2],location[3]);
+//        mAnimation.setDuration(1000);
+//        mAnimation.setRepeatCount(0);
+//        arrowview.setAnimation(mAnimation);
+
+        arrowview.startAnimation(swordanim);
 
         enemyTurn.execute();
 
@@ -209,6 +214,7 @@ public class BattleActivity extends AppCompatActivity {
                     location[1] = 800;
                     location[2] = 0;
                     location[3] = 0;
+                    swordanim = AnimationUtils.loadAnimation(this, R.anim.swordhead);
                 }
              break;
             case R.id.radiobutton_atkbody:
@@ -218,6 +224,7 @@ public class BattleActivity extends AppCompatActivity {
                     location[1] = 800;
                     location[2] = 300;
                     location[3] = 300;
+                    swordanim = AnimationUtils.loadAnimation(this, R.anim.swordbody);
                 }
                 break;
             case R.id.radiobutton_atklegs:
@@ -227,6 +234,7 @@ public class BattleActivity extends AppCompatActivity {
                     location[1] = 800;
                     location[2] = 600;
                     location[3] = 600;
+                    swordanim = AnimationUtils.loadAnimation(this, R.anim.swordfoot);
                 }
                 break;
             case R.id.radiobutton_defhead:

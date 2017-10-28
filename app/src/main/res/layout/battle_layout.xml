@@ -122,6 +122,13 @@
         android:background="#dddddd"
         android:layout_weight="3">
 
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bat_eye_ffx"
+            />
+
         <ProgressBar
             android:id="@+id/progressBar_enemyhp"
             style="?android:attr/progressBarStyleHorizontal"
@@ -144,7 +151,7 @@
      android:id="@+id/arrow_view"
      android:layout_width="150dp"
      android:layout_height="75dp"
-     android:src="@drawable/arrow"
+     android:src="@drawable/sworda"
 
      android:layout_marginTop="50dp"
      android:layout_marginLeft="100dp"/>

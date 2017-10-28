@@ -28,7 +28,11 @@ public class SQLiteClass {
                 "level INTEGER, " +
                 "str INTEGER, " +
                 "agl INTEGER, " +
-                "int INTEGER)");
+                "int INTEGER," +
+                "xptonext INTEGER," +
+                "physarmor INTEGER," +
+                "magicarmor INTEGER," +
+                "evasion INTEGER)");
         //DB Locations
         database.execSQL("CREATE TABLE IF NOT EXISTS locations " +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -56,36 +60,62 @@ public class SQLiteClass {
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "id_hero INTEGER," +
                 "id_item INTEGER)");
+        database.execSQL("CREATE TABLE IF NOT EXISTS levelxp " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "level INTEGER," +
+                "xptonext INTEGER)");
     }
     public void InsertHero(Hero hero)
     {
-        database.execSQL("INSERT INTO heroes (name,level,str,agl,int) VALUES ('" + hero.getName() + "'," + String.valueOf(hero.getLevel()) + "," + String.valueOf(hero.getStrength()) + "," + String.valueOf(hero.getAgility()) + "," + String.valueOf(hero.getIntelligence())+ ");");
+        database.execSQL("INSERT INTO heroes (name,level,str,agl,int,xptonext,physarmor,magicarmor,evasion) " +
+                "VALUES ('" + hero.getName() + "'," +
+                String.valueOf(hero.getLevel()) + "," +
+                String.valueOf(hero.getStrength()) + "," +
+                String.valueOf(hero.getAgility()) + "," +
+                String.valueOf(hero.getIntelligence())+"," +
+                String.valueOf(hero.getXptonext())+"," +
+                String.valueOf(hero.getPhysarmor())+"," +
+                String.valueOf(hero.getMagicarmor())+"," +
+                String.valueOf(hero.getEvasion())+
+                ");");
     }
     public void DeleteHero(int id)
     {
         database.execSQL("DELETE FROM heroes WHERE id = " + String.valueOf(id)+";");
     }
-    public String GetNameById(int id)
+    public Hero GetHeroById(int id)
     {
         try
         {
             Cursor cursor = database.rawQuery("SELECT * FROM heroes WHERE id = "+ String.valueOf(id) + ";", null);
             if(cursor.moveToFirst()){
-                return cursor.getString(1);
+                Hero hero = new Hero(cursor.getInt(0),cursor.getString(1));
+                hero.setLevel(cursor.getInt(2));
+                hero.setStrength(cursor.getInt(3));
+                hero.setAgility(cursor.getInt(4));
+                hero.setIntelligence(cursor.getInt(5));
+                hero.setXptonext(cursor.getInt(6));
+                hero.setPhysarmor(cursor.getInt(7));
+                hero.setMagicarmor(cursor.getInt(8));
+                hero.setEvasion(cursor.getInt(9));
+                return hero;
             }
         }
         catch (Exception e)
         {
-            return e.toString();
+            return null;
         }
 
-        return "Error: not found";
+        return null;
     }
     public void CreateTestData()
     {
-        database.execSQL("INSERT INTO heroes (name,level,str,agl,int) VALUES ('Lancelot', 10,5,5,5);");
-        database.execSQL("INSERT INTO heroes (name,level,str,agl,int) VALUES ('Rafael', 5,15,2,4);");
-        database.execSQL("INSERT INTO heroes (name,level,str,agl,int) VALUES ('Goku', 9000,150,100,20);");
+        database.execSQL("INSERT INTO heroes (name,level,str,agl,int,xptonext,physarmor,magicarmor,evasion) " +
+                "VALUES ('Lancelot', 10,5,5,5,1500,0,0,0);");
+        database.execSQL("INSERT INTO heroes (name,level,str,agl,int,xptonext,physarmor,magicarmor,evasion) " +
+                "VALUES ('Rafael', 5,15,2,4,200,0,0,0);");
+        database.execSQL("INSERT INTO heroes (name,level,str,agl,int,xptonext,physarmor,magicarmor,evasion) " +
+                "VALUES ('Goku', 9000,150,100,20,3000,0,0,0);");
 
         database.execSQL("INSERT INTO enemies (name,level,str,agl,int) VALUES ('Kusaka', 10,5,5,5);");
         database.execSQL("INSERT INTO enemies (name,level,str,agl,int) VALUES ('Grizyaka', 5,15,2,4);");
@@ -94,10 +124,22 @@ public class SQLiteClass {
         database.execSQL("INSERT INTO items (name,description) VALUES ('Меч', 'Чтобы рубить');");
         database.execSQL("INSERT INTO items (name,description) VALUES ('Дубина', 'Чтобы крушить');");
         database.execSQL("INSERT INTO items (name,description) VALUES ('Котлетки', 'Чтобы кушать');");
+
+        database.execSQL("INSERT INTO levelxp (lvl,xptonext) VALUES (0, 100);");
+        database.execSQL("INSERT INTO levelxp (lvl,xptonext) VALUES (1, 250);");
+        database.execSQL("INSERT INTO levelxp (lvl,xptonext) VALUES (2, 575);");
+        database.execSQL("INSERT INTO levelxp (lvl,xptonext) VALUES (3, 760);");
+        database.execSQL("INSERT INTO levelxp (lvl,xptonext) VALUES (4, 830);");
     }
     public void GiveItemToHero(int id_item,int id_hero)
     {
         database.execSQL("INSERT INTO heroesitems (id_item,id_hero) VALUES ("+ String.valueOf(id_item) +", "+String.valueOf(id_hero)+");");
+    }
+    public void UpdateHero(Hero hero)
+    {
+        database.execSQL("UPDATE heroes " +
+                "SET name = "+ hero.getName() + "," +
+                "WHERE id = " + String.valueOf(hero.getId()) + ";");
     }
     public List<Hero> GetAllHeroes()
     {
@@ -105,7 +147,17 @@ public class SQLiteClass {
         List<Hero> heroeslist = new ArrayList<>();
         if(cursor.moveToFirst()){
             do{
-                heroeslist.add(new Hero(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),100,cursor.getInt(3),cursor.getInt(4),cursor.getInt(5)));
+                Hero hero = new Hero(cursor.getInt(0),cursor.getString(1));
+                hero.setLevel(cursor.getInt(2));
+                hero.setStrength(cursor.getInt(3));
+                hero.setAgility(cursor.getInt(4));
+                hero.setIntelligence(cursor.getInt(5));
+                hero.setXptonext(cursor.getInt(6));
+                hero.setPhysarmor(cursor.getInt(7));
+                hero.setMagicarmor(cursor.getInt(8));
+                hero.setEvasion(cursor.getInt(9));
+                heroeslist.add(hero);
+
         }
             while(cursor.moveToNext());
         }

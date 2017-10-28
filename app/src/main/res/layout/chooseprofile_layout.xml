@@ -25,5 +25,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="25dp"
-        android:onClick="onCreateHeroClick"/>
+        android:onClick="onCreateHeroClick"
+        android:src="@mipmap/ic_add_black_24dp"/>
 </RelativeLayout>
